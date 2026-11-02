@@ -1,0 +1,876 @@
+<!doctype html><html><head><meta charset=utf8><meta name=viewport content="width=device-width,initial-scale=1,viewport-fit=cover"><style>:root{color-scheme:light;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;padding:0;font:14px -apple-system,BlinkMacSystemFont,sans-serif;background:#fff;color:#000}img{max-width:100%}[hidden]:not([hidden=until-found i]){display:none!important}</style></head><body>
+<title>Elyra Earth Education</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,400;9..144,600;9..144,700&family=Inter:wght@300;400;500;600&display=swap">
+<style>
+/* Layout: dark ink hero with a live "village classroom" screen, then alternating light sections; one stacked-layer diagram as the signature. Brand: Elyra Styleguide v2.0 (teal palette, Fraunces + Inter). */
+:root{
+  --bg:#F6FBFC; --surface:#FFFFFF; --tint:#E3F5F7; --ink:#0E2B30; --muted:#40595E;
+  --teal:#2B9EAB; --teal-dark:#1C7A86; --teal-deep:#145F6A; --line:#CFE9EC; --line-strong:#9DD8DF;
+  --band:#0E2B30; --band-2:#163C42; --band-fg:#E9F6F7; --band-muted:#A7C8CC; --on-teal:#FFFFFF;
+  --f-display:"Fraunces", Georgia, "Times New Roman", serif;
+  --f-body:"Inter", system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --gutter-l:max(16px, env(safe-area-inset-left, 0px));
+  --gutter-r:max(16px, env(safe-area-inset-right, 0px));
+}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]){
+  --bg:#0B2226; --surface:#102F34; --tint:#143A40; --ink:#E6F3F5; --muted:#A3C1C5;
+  --teal:#4DB6C2; --teal-dark:#6CC6D0; --teal-deep:#9DD8DF; --line:#1E4A51; --line-strong:#2E6770;
+  --band:#071A1D; --band-2:#0F2C31; --band-fg:#E9F6F7; --band-muted:#A7C8CC; --on-teal:#06282C;
+  color-scheme:dark }}
+:root[data-theme="dark"]{
+  --bg:#0B2226; --surface:#102F34; --tint:#143A40; --ink:#E6F3F5; --muted:#A3C1C5;
+  --teal:#4DB6C2; --teal-dark:#6CC6D0; --teal-deep:#9DD8DF; --line:#1E4A51; --line-strong:#2E6770;
+  --band:#071A1D; --band-2:#0F2C31; --band-fg:#E9F6F7; --band-muted:#A7C8CC; --on-teal:#06282C;
+  color-scheme:dark }
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto} *{animation:none!important;transition:none!important}}
+body{background:var(--bg);color:var(--ink);font-family:var(--f-body);font-size:16px;line-height:1.6;-webkit-font-smoothing:antialiased}
+body::before{content:"";position:fixed;inset:0 0 auto;height:env(safe-area-inset-top,0px);z-index:10;background:var(--band)}
+h1,h2,h3{font-family:var(--f-display);font-weight:600;line-height:1.12;text-wrap:balance;margin:0}
+p{margin:0}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--teal);outline-offset:3px;border-radius:4px}
+
+.wrap{max-width:1140px;margin:0 auto;padding-left:var(--gutter-l);padding-right:var(--gutter-r)}
+section{padding-block:clamp(56px,8vw,104px)}
+.eyebrow{font-size:12px;font-weight:600;letter-spacing:.14em;text-transform:uppercase;color:var(--teal-dark)}
+.lead{font-size:clamp(17px,1.6vw,19px);color:var(--muted);max-width:62ch}
+.sec-head{display:grid;gap:14px;max-width:760px;margin-bottom:clamp(32px,4vw,52px)}
+.sec-head h2{font-size:clamp(30px,4vw,46px)}
+
+/* Nav */
+.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:20;background:var(--band);color:var(--band-fg);border-bottom:1px solid var(--band-2)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;padding-block:14px;flex-wrap:wrap}
+.brand{font-family:var(--f-display);font-size:20px;font-weight:600;display:flex;align-items:baseline;gap:10px;text-decoration:none}
+.brand small{font-family:var(--f-body);font-size:12px;font-weight:500;letter-spacing:.12em;text-transform:uppercase;color:var(--band-muted)}
+.nav ul{list-style:none;margin:0;padding:0;display:flex;gap:22px;flex-wrap:wrap;font-size:14px}
+.nav ul a{text-decoration:none;color:var(--band-muted)}
+.nav ul a:hover{color:var(--band-fg)}
+@media (max-width:760px){.nav ul{display:none}}
+
+/* Hero */
+.hero{background:var(--band);color:var(--band-fg);padding-block:clamp(48px,7vw,96px) clamp(56px,8vw,104px)}
+.hero .wrap{display:grid;grid-template-columns:1.05fr 1fr;gap:clamp(32px,5vw,64px);align-items:center}
+.hero .eyebrow{color:var(--teal)}
+.hero h1{font-size:clamp(38px,5.6vw,68px);font-weight:600;letter-spacing:-.01em;margin-top:16px}
+.hero h1 em{font-style:italic;font-weight:400;color:var(--teal)}
+.hero .lead{color:var(--band-muted);margin-top:22px}
+.cta-row{display:flex;gap:12px;flex-wrap:wrap;margin-top:30px}
+.btn{display:inline-flex;align-items:center;gap:8px;padding:12px 20px;border-radius:999px;font-weight:600;font-size:15px;text-decoration:none;border:1.5px solid transparent;transition:background .2s,border-color .2s}
+.btn-primary{background:var(--teal);color:var(--on-teal)}
+.btn-primary:hover{background:var(--teal-dark)}
+.btn-ghost{border-color:var(--band-2);color:var(--band-fg)}
+.btn-ghost:hover{border-color:var(--teal)}
+@media (max-width:900px){.hero .wrap{grid-template-columns:1fr}}
+
+/* Classroom screen mock */
+.screen{min-width:0;background:var(--band-2);border:1px solid #2a5a61;border-radius:14px;padding:12px;box-shadow:0 30px 60px -30px rgba(0,0,0,.6)}
+.screen-bar{display:flex;justify-content:space-between;gap:8px;flex-wrap:wrap;font-size:11px;letter-spacing:.06em;text-transform:uppercase;color:var(--band-muted);padding:2px 4px 10px}
+.dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:#5FD3A0;margin-right:6px;vertical-align:1px}
+.lesson{background:#F6FBFC;color:#0E2B30;border-radius:8px;padding:clamp(16px,2.4vw,24px);display:grid;gap:14px}
+.lesson .mod{font-size:11px;letter-spacing:.12em;text-transform:uppercase;color:#1C7A86;font-weight:600}
+.lesson h3{font-size:clamp(20px,2.2vw,26px)}
+.lesson .who{font-size:13px;color:#40595E}
+.poll{display:grid;gap:8px}
+.poll p{font-size:14px;font-weight:600}
+.opt{display:flex;justify-content:space-between;align-items:center;gap:10px;font-size:13.5px;border:1px solid #CFE9EC;background:#fff;border-radius:8px;padding:9px 12px}
+.opt span:last-child{font-size:11px;color:#40595E}
+.opt.on{border-color:#2B9EAB;background:#E3F5F7}
+.room{display:flex;gap:8px;flex-wrap:wrap;padding:12px 4px 2px}
+.chip{font-size:12px;color:var(--band-fg);border:1px solid #2a5a61;border-radius:999px;padding:4px 10px}
+.caption{font-size:12px;font-weight:300;color:var(--band-muted);margin-top:10px}
+
+/* Premise */
+.premise .wrap{display:grid;grid-template-columns:1fr 1fr;gap:clamp(28px,5vw,72px);align-items:start}
+.premise h2{font-size:clamp(28px,3.6vw,42px)}
+.premise .body{display:grid;gap:18px;color:var(--muted);font-size:17px;max-width:60ch}
+.premise .body strong{color:var(--ink);font-weight:600}
+@media (max-width:820px){.premise .wrap{grid-template-columns:1fr}}
+
+/* Classroom stack */
+.stack-sec{background:var(--surface);border-block:1px solid var(--line)}
+.stack-grid{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start}
+@media (max-width:860px){.stack-grid{grid-template-columns:1fr}}
+.stack{display:grid;gap:6px}
+.layer{display:grid;grid-template-columns:120px 1fr;gap:16px;align-items:center;padding:14px 18px;border-radius:10px;background:var(--tint);border:1px solid var(--line)}
+.layer .k{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-deep)}
+.layer h3{font-family:var(--f-body);font-size:16px;font-weight:600}
+.layer p{font-size:14px;color:var(--muted)}
+.layer.top{background:var(--teal);border-color:var(--teal)}
+.layer.top .k,.layer.top h3,.layer.top p{color:var(--on-teal)}
+@media (max-width:480px){.layer{grid-template-columns:1fr;gap:4px}}
+.stack-note{font-size:13px;font-weight:300;color:var(--muted);margin-top:12px}
+.roles{display:grid;gap:22px}
+.role{display:grid;gap:6px;padding-bottom:22px;border-bottom:1px solid var(--line)}
+.role:last-child{border-bottom:0;padding-bottom:0}
+.role h3{font-size:22px}
+.role p{color:var(--muted)}
+
+/* Tracks */
+.tracks{display:grid;grid-template-columns:1fr 1fr;gap:20px}
+@media (max-width:820px){.tracks{grid-template-columns:1fr}}
+.track{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(22px,3vw,32px);display:grid;gap:14px;align-content:start}
+.track .tag{justify-self:start;font-size:12px;font-weight:600;letter-spacing:.08em;text-transform:uppercase;background:var(--tint);color:var(--teal-deep);padding:4px 10px;border-radius:999px}
+.track h3{font-size:clamp(24px,2.6vw,30px)}
+.track p{color:var(--muted)}
+.pills{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:4px 0 0;padding:0}
+.pills li{font-size:14px;border:1px solid var(--line-strong);border-radius:999px;padding:5px 12px}
+.equal{margin-top:22px;display:flex;gap:14px;align-items:center;font-family:var(--f-display);font-size:clamp(18px,2vw,22px);font-style:italic;color:var(--teal-deep)}
+.equal::before{content:"";flex:0 0 40px;height:2px;background:var(--teal)}
+
+/* Curriculum */
+.cur-sec{background:var(--tint)}
+.cur{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--line-strong);border:1px solid var(--line-strong);border-radius:14px;overflow:hidden}
+@media (max-width:900px){.cur{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:560px){.cur{grid-template-columns:1fr}}
+.subj{background:var(--surface);padding:24px;display:grid;gap:8px;align-content:start}
+.subj .k{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark)}
+.subj h3{font-size:21px}
+.subj p{font-size:15px;color:var(--muted)}
+
+/* Principles */
+.principles{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:28px}
+@media (max-width:900px){.principles{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media (max-width:520px){.principles{grid-template-columns:1fr}}
+.pr{display:grid;gap:8px;border-top:2px solid var(--teal);padding-top:16px}
+.pr h3{font-size:20px}
+.pr p{font-size:15px;color:var(--muted)}
+
+/* Infrastructure */
+.infra{background:var(--band);color:var(--band-fg)}
+.infra .eyebrow{color:var(--teal)}
+.infra .sec-head h2{color:var(--band-fg)}
+.infra .lead{color:var(--band-muted)}
+.infra-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.infra-grid{grid-template-columns:1fr}}
+.ib{background:var(--band-2);border-radius:12px;padding:24px;display:grid;gap:10px;align-content:start}
+.ib h3{font-size:21px}
+.ib p{font-size:15px;color:var(--band-muted)}
+
+/* Roadmap */
+.road{display:grid;grid-template-columns:1fr 1fr;gap:0;position:relative}
+@media (max-width:820px){.road{grid-template-columns:1fr}}
+.step{padding:clamp(24px,3vw,36px);display:grid;gap:12px;align-content:start;border:1px solid var(--line);background:var(--surface)}
+.step:first-child{border-radius:14px 0 0 14px}
+.step:last-child{border-radius:0 14px 14px 0;border-left:0}
+@media (max-width:820px){.step:first-child{border-radius:14px 14px 0 0}.step:last-child{border-radius:0 0 14px 14px;border-left:1px solid var(--line);border-top:0}}
+.step .n{font-family:var(--f-display);font-size:52px;line-height:1;color:var(--teal)}
+.step .when{font-size:12px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--muted)}
+.step h3{font-size:clamp(22px,2.4vw,28px)}
+.step p{color:var(--muted)}
+.step ul{margin:4px 0 0;padding-left:18px;color:var(--muted);display:grid;gap:6px;font-size:15px}
+
+/* Partner CTA */
+.partner{background:var(--surface);border-top:1px solid var(--line)}
+.aud{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.aud{grid-template-columns:1fr}}
+.a{border:1px solid var(--line);border-radius:12px;padding:24px;display:grid;gap:10px;align-content:start;background:var(--bg)}
+.a h3{font-size:21px}
+.a p{font-size:15px;color:var(--muted)}
+
+/* Investment case */
+.roi-sec{background:var(--surface);border-block:1px solid var(--line)}
+.cc{display:grid;grid-template-columns:minmax(0,0.9fr) minmax(0,1.1fr);gap:clamp(28px,5vw,64px);align-items:start;margin-bottom:clamp(48px,6vw,72px)}
+@media (max-width:860px){.cc{grid-template-columns:1fr}}
+.big{font-family:var(--f-display);font-size:clamp(72px,11vw,132px);line-height:.9;color:var(--teal-deep);font-weight:600;letter-spacing:-.02em;font-variant-numeric:lining-nums}
+.big small{font-size:.32em;font-weight:400;color:var(--muted);letter-spacing:0;margin-left:6px}
+.cc .src{font-size:13px;font-weight:300;color:var(--muted);margin-top:14px;max-width:46ch}
+.cc .txt{display:grid;gap:16px;color:var(--muted);font-size:17px;max-width:62ch}
+.cc .txt strong{color:var(--ink);font-weight:600}
+.calc{display:grid;grid-template-columns:minmax(0,320px) minmax(0,1fr);gap:clamp(24px,4vw,48px);align-items:start}
+@media (max-width:900px){.calc{grid-template-columns:1fr}}
+.calc h3{font-size:clamp(24px,2.6vw,30px)}
+.inputs{display:grid;gap:14px;background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:20px}
+.inputs label{display:grid;gap:4px;font-size:13px;font-weight:500;color:var(--ink)}
+.inputs label span{font-weight:300;color:var(--muted);font-size:12px}
+.inputs input{font:inherit;font-size:15px;font-variant-numeric:tabular-nums;padding:8px 10px;border-radius:8px;border:1px solid var(--line-strong);background:var(--surface);color:var(--ink);width:100%}
+.inputs .grp{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark);padding-top:6px}
+.inputs .grp:first-child{padding-top:0}
+.reset{justify-self:start;font:inherit;font-size:13px;font-weight:600;color:var(--teal-dark);background:none;border:0;padding:4px 0;cursor:pointer;text-decoration:underline}
+.out{display:grid;gap:20px;min-width:0}
+.kpis{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:1px;background:var(--line);border:1px solid var(--line);border-radius:12px;overflow:hidden}
+@media (max-width:640px){.kpis{grid-template-columns:repeat(2,minmax(0,1fr))}}
+.kpi{background:var(--surface);padding:16px;display:grid;gap:4px;align-content:start}
+.kpi .l{font-size:12px;color:var(--muted)}
+.kpi .v{font-family:var(--f-display);font-size:clamp(24px,2.6vw,32px);font-weight:600;font-variant-numeric:tabular-nums;color:var(--ink)}
+.kpi.hl{background:var(--tint)}
+.kpi.hl .v{color:var(--teal-deep)}
+.chart{background:var(--bg);border:1px solid var(--line);border-radius:12px;padding:16px 12px 8px}
+.chart p{font-size:13px;font-weight:600;padding:0 6px 6px}
+.chart svg{display:block;width:100%;height:auto}
+.legend{display:flex;gap:16px;flex-wrap:wrap;font-size:12px;color:var(--muted);padding:6px}
+.legend i{display:inline-block;width:14px;height:3px;border-radius:2px;vertical-align:middle;margin-right:6px}
+.assume{font-size:13px;color:var(--muted);display:grid;gap:8px}
+.assume strong{color:var(--ink)}
+.flag{display:inline-block;font-size:11px;font-weight:600;letter-spacing:.06em;text-transform:uppercase;background:var(--tint);color:var(--teal-deep);border-radius:999px;padding:2px 8px;margin-right:6px}
+
+/* Nav button + views */
+.nav-right{display:flex;align-items:center;gap:22px;flex-wrap:wrap}
+.nav-btn{font-size:13px;font-weight:600;text-decoration:none;padding:7px 14px;border-radius:999px;border:1.5px solid var(--teal);color:var(--band-fg);white-space:nowrap}
+.nav-btn:hover,.nav-btn[aria-current="page"]{background:var(--teal);color:var(--on-teal)}
+
+/* Tasks page */
+.t-hero{background:var(--band);color:var(--band-fg);padding-block:clamp(40px,6vw,72px)}
+.t-hero .eyebrow{color:var(--teal)}
+.t-hero h1{font-size:clamp(34px,5vw,56px);margin-top:14px}
+.t-hero .lead{color:var(--band-muted);margin-top:18px}
+.mission{margin-top:28px;display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1px;background:var(--band-2);border:1px solid var(--band-2);border-radius:12px;overflow:hidden}
+@media (max-width:760px){.mission{grid-template-columns:1fr}}
+.mission div{background:var(--band);padding:18px 20px;display:grid;gap:4px}
+.mission .l{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal)}
+.mission p{font-size:15px;color:var(--band-fg)}
+.progress{display:flex;align-items:center;gap:12px;margin-top:22px;font-size:13px;color:var(--band-muted);flex-wrap:wrap}
+.bar{flex:1 1 200px;height:6px;border-radius:99px;background:var(--band-2);overflow:hidden;max-width:360px}
+.bar span{display:block;height:100%;width:0;background:var(--teal);transition:width .3s}
+.phase-head{display:flex;gap:20px;align-items:baseline;flex-wrap:wrap;margin-bottom:clamp(24px,3vw,36px)}
+.phase-head .n{font-family:var(--f-display);font-size:64px;line-height:1;color:var(--teal)}
+.phase-head h2{font-size:clamp(28px,3.6vw,40px)}
+.phase-head p{flex-basis:100%;color:var(--muted);max-width:66ch;font-size:17px}
+.ws{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+@media (max-width:860px){.ws{grid-template-columns:1fr}}
+.wcard{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:clamp(20px,2.6vw,28px);display:grid;gap:14px;align-content:start}
+.wcard .k{font-size:11px;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--teal-dark)}
+.wcard h3{font-size:22px}
+.wcard > p{color:var(--muted);font-size:15px}
+.tasks{list-style:none;margin:0;padding:0;display:grid;gap:8px}
+.tasks label{display:grid;grid-template-columns:20px 1fr;gap:10px;align-items:start;font-size:15px;cursor:pointer}
+.tasks input{width:18px;height:18px;margin:2px 0 0;accent-color:var(--teal)}
+.tasks input:checked + span{color:var(--muted);text-decoration:line-through;text-decoration-color:var(--line-strong)}
+.deliv{font-size:14px;border-top:1px solid var(--line);padding-top:12px;color:var(--ink)}
+.deliv b{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);margin-right:6px}
+.tbl-wrap{overflow-x:auto;border:1px solid var(--line);border-radius:12px;background:var(--surface)}
+table{border-collapse:collapse;width:100%;min-width:640px;font-size:14px}
+th,td{text-align:left;padding:12px 16px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-size:11px;font-weight:600;letter-spacing:.1em;text-transform:uppercase;color:var(--teal-dark);background:var(--tint)}
+tr:last-child td{border-bottom:0}
+td.w{font-variant-numeric:tabular-nums;font-weight:600;white-space:nowrap}
+.note{font-size:13px;font-weight:300;color:var(--muted);margin-top:10px}
+.biz{display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1fr);gap:clamp(24px,4vw,48px);margin-top:clamp(28px,4vw,44px);align-items:start}
+@media (max-width:860px){.biz{grid-template-columns:1fr}}
+.biz .box{background:var(--band);color:var(--band-fg);border-radius:14px;padding:clamp(22px,3vw,32px);display:grid;gap:14px}
+.biz .box h3{font-size:clamp(22px,2.4vw,28px)}
+.biz .box p{color:var(--band-muted)}
+.clients{display:flex;flex-wrap:wrap;gap:8px;list-style:none;margin:0;padding:0}
+.clients li{font-size:13px;border:1px solid #2a5a61;border-radius:999px;padding:5px 12px;color:var(--band-fg)}
+.open{display:grid;gap:10px;margin:0;padding-left:20px;color:var(--muted)}
+.open li strong{color:var(--ink)}
+
+@media (max-width:760px){.pnp{grid-template-columns:1fr!important}}
+
+footer{background:var(--band);color:var(--band-muted);font-size:13px}
+footer .wrap{padding-block:32px;display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+footer b{font-family:var(--f-display);color:var(--band-fg);font-weight:600;font-size:16px}
+</style>
+
+<nav class="nav" aria-label="Main">
+  <div class="wrap">
+    <a class="brand" href="#top">Elyra Earth <small>Education</small></a>
+    <div class="nav-right">
+      <ul>
+        <li><a href="#investment">Investment case</a></li>
+        <li><a href="#model">The classroom</a></li>
+        <li><a href="#tracks">Two tracks</a></li>
+        <li><a href="#curriculum">Curriculum</a></li>
+        <li><a href="#infrastructure">Infrastructure</a></li>
+        <li><a href="#roadmap">Roadmap</a></li>
+      </ul>
+      <a class="nav-btn" id="nav-tasks" href="#school-dev-tasks">School dev. tasks</a>
+    </div>
+  </div>
+</nav>
+
+<div id="view-tasks" hidden>
+  <header class="t-hero">
+    <div class="wrap">
+      <span class="eyebrow">School development tasks · Brief for new team members</span>
+      <h1>Find the best digital education solution for Step 1.</h1>
+      <p class="lead">Your job is to source, test and recommend the third-party education platform, equipment and connectivity that Elyra will use in its first village classrooms. This page lists what to do, what to deliver and how solutions will be judged.</p>
+      <div class="mission">
+        <div><span class="l">Goal</span><p>A tested, costed recommendation for a complete Step 1 classroom setup.</p></div>
+        <div><span class="l">Scope</span><p>Plug-and-play platform, equipment, internet, safety, teacher model, adult and youth programmes.</p></div>
+        <div><span class="l">Reports to</span><p>Elyra Earth management. Name and contact to be added.</p></div>
+      </div>
+      <div class="progress" aria-live="polite"><div class="bar"><span id="t-bar"></span></div><span id="t-count">0 of 0 tasks done</span></div>
+    </div>
+  </header>
+
+  <main>
+    <section>
+      <div class="wrap">
+        <div class="phase-head">
+          <span class="n">1</span>
+          <h2>Step 1: Use a third-party solution</h2>
+          <p>We start with a proven, ready-to-use digital education platform so children can learn from day one. Work through the six areas below. Tick tasks off as you go (ticks are saved in your own browser only).</p>
+        </div>
+
+        <div style="display:grid;grid-template-columns:minmax(0,1fr) minmax(0,1.4fr);gap:clamp(16px,3vw,40px);align-items:start;background:var(--tint);border:1px solid var(--line-strong);border-radius:14px;padding:clamp(20px,3vw,32px);margin-bottom:clamp(24px,3vw,36px)" class="pnp">
+          <div style="display:grid;gap:8px">
+            <span class="eyebrow">Key requirement for every area</span>
+            <h3 style="font-size:clamp(24px,2.8vw,32px)">Plug and play.</h3>
+          </div>
+          <div style="display:grid;gap:10px;color:var(--muted)">
+            <p>Every solution we choose must be easy to set up with low effort, so we can open classrooms in many villages at the same time. Prefer complete kits over custom builds.</p>
+            <ul style="margin:0;padding-left:18px;display:grid;gap:6px;font-size:15px">
+              <li>Set up in hours by one trained local person, without specialists on site.</li>
+              <li>Same standard kit in every village: screen, power, internet and platform.</li>
+              <li>Pre-configured before shipping and managed remotely after installation.</li>
+              <li>New classrooms can be added in parallel without extra central work.</li>
+            </ul>
+          </div>
+        </div>
+
+        <div class="ws">
+          <article class="wcard">
+            <span class="k">Area A</span>
+            <h3>Source and test education solutions</h3>
+            <p>Find the platforms that can deliver top-quality, secular, science-based lessons in a village classroom.</p>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="a1"><span>Build a longlist of digital education platforms for low-connectivity, low-income settings.</span></label></li>
+              <li><label><input type="checkbox" data-task="a2"><span>Check each against the scorecard below and cut to a shortlist of 3–5.</span></label></li>
+              <li><label><input type="checkbox" data-task="a3"><span>Request demos, pricing and references from the shortlisted providers.</span></label></li>
+              <li><label><input type="checkbox" data-task="a4"><span>Test each shortlisted platform on a big screen with real lessons, online and offline.</span></label></li>
+              <li><label><input type="checkbox" data-task="a5"><span>Check content covers both the academic and the practical track.</span></label></li>
+              <li><label><input type="checkbox" data-task="a6"><span>Check language options for the pilot country.</span></label></li>
+              <li><label><input type="checkbox" data-task="a7"><span>Time how long it takes to install and start the platform from scratch, and whether it can be managed remotely across many classrooms.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Longlist, shortlist and a test report per platform.</p>
+          </article>
+
+          <article class="wcard">
+            <span class="k">Area B</span>
+            <h3>Equipment</h3>
+            <p>Define the standard equipment for one Elyra classroom.</p>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="b1"><span>Specify the big interactive screen: size, touch or pen input, brightness for daylight rooms.</span></label></li>
+              <li><label><input type="checkbox" data-task="b2"><span>Decide on student devices (tablets or laptops), if any, and how many per class.</span></label></li>
+              <li><label><input type="checkbox" data-task="b3"><span>Add audio, camera and microphone for live lessons.</span></label></li>
+              <li><label><input type="checkbox" data-task="b4"><span>Size the power system: solar panels, batteries and backup.</span></label></li>
+              <li><label><input type="checkbox" data-task="b5"><span>Find suppliers who can deliver, install and service locally.</span></label></li>
+              <li><label><input type="checkbox" data-task="b6"><span>Calculate the full cost per classroom, one-off and yearly.</span></label></li>
+              <li><label><input type="checkbox" data-task="b7"><span>Design one standard classroom kit that ships pre-configured and can be set up by one local person.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Equipment list with suppliers and cost per classroom.</p>
+          </article>
+
+          <article class="wcard">
+            <span class="k">Area C</span>
+            <h3>Internet connection</h3>
+            <p>Make sure every classroom has fast, reliable internet.</p>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="c1"><span>Confirm Starlink availability, licensing and pricing in the pilot country.</span></label></li>
+              <li><label><input type="checkbox" data-task="c2"><span>Estimate bandwidth needed for live and recorded lessons per class.</span></label></li>
+              <li><label><input type="checkbox" data-task="c3"><span>Plan a backup: local mobile network and offline lesson storage.</span></label></li>
+              <li><label><input type="checkbox" data-task="c4"><span>Set up content filtering and network access rules for children.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Connectivity plan with monthly cost per classroom.</p>
+          </article>
+
+          <article class="wcard">
+            <span class="k">Area D</span>
+            <h3>Safety for the equipment</h3>
+            <p>Protect the equipment, the building and the people using it.</p>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="d1"><span>Define a secure room: lockable doors, cabinets and mounting for the screen.</span></label></li>
+              <li><label><input type="checkbox" data-task="d2"><span>Protect against heat, dust, humidity and power surges.</span></label></li>
+              <li><label><input type="checkbox" data-task="d3"><span>Get insurance options for theft and damage.</span></label></li>
+              <li><label><input type="checkbox" data-task="d4"><span>Create an asset register and assign a local person responsible.</span></label></li>
+              <li><label><input type="checkbox" data-task="d5"><span>Agree a maintenance and repair routine with the supplier.</span></label></li>
+              <li><label><input type="checkbox" data-task="d6"><span>Check electrical safety and Elyra's safeguarding rules for children.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Safety and maintenance plan.</p>
+          </article>
+
+          <article class="wcard">
+            <span class="k">Area E</span>
+            <h3>Local teachers as assistants who learn</h3>
+            <p>The platform must let local teachers run the room and grow their own skills.</p>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="e1"><span>Check that each platform has teacher guides and a classroom assistant role.</span></label></li>
+              <li><label><input type="checkbox" data-task="e2"><span>Find training and certification paths for local teachers.</span></label></li>
+              <li><label><input type="checkbox" data-task="e3"><span>Check progress tracking so teachers can follow each child.</span></label></li>
+              <li><label><input type="checkbox" data-task="e4"><span>Interview local teachers during testing and record their feedback.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Teacher model and training plan.</p>
+          </article>
+
+          <article class="wcard">
+            <span class="k">Area F</span>
+            <h3>Adult and youth programmes</h3>
+            <p>The classroom is used after school hours to train adults and young people for work.</p>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="f1"><span>Find job training programmes for adults that run on the same equipment.</span></label></li>
+              <li><label><input type="checkbox" data-task="f2"><span>Find courses that teach young people online job options and digital skills.</span></label></li>
+              <li><label><input type="checkbox" data-task="f3"><span>Plan a timetable for evening and weekend use of the classroom.</span></label></li>
+              <li><label><input type="checkbox" data-task="f4"><span>Check licence terms allow adult and youth use, not only school use.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Shortlist of adult and youth programmes with costs.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="cur-sec">
+      <div class="wrap">
+        <div class="sec-head">
+          <span class="eyebrow">Scorecard</span>
+          <h2>How to judge each platform.</h2>
+          <p class="lead">Score each shortlisted platform from 1 to 5 on every criterion and multiply by the weight. The highest total is the starting recommendation.</p>
+        </div>
+        <div class="tbl-wrap">
+          <table>
+            <thead><tr><th>Criterion</th><th>Weight</th><th>What good looks like</th></tr></thead>
+            <tbody>
+              <tr><td>Learning quality</td><td class="w">15%</td><td>Content from top educators, evidence of learning results, secular and science-based.</td></tr>
+              <tr><td>Works offline and on low bandwidth</td><td class="w">15%</td><td>Lessons can be downloaded and run when the connection drops.</td></tr>
+              <tr><td>Local teacher as assistant</td><td class="w">10%</td><td>Teacher guides, assistant role, training and certification for local teachers.</td></tr>
+              <tr><td>Academic and practical content</td><td class="w">15%</td><td>Covers core subjects and vocational skills, plus economy, farming and entrepreneurship.</td></tr>
+              <tr><td>Cost per classroom</td><td class="w">10%</td><td>Clear licence price that fits the village budget and scales.</td></tr>
+              <tr><td>Plug and play</td><td class="w">15%</td><td>Set up in hours with low effort, standard kit, remote management, can roll out to many villages at once.</td></tr>
+              <tr><td>Big-screen and interactive use</td><td class="w">10%</td><td>Built for whole-class teaching with polls, questions and shared exercises.</td></tr>
+              <tr><td>Adult and youth use, languages, data protection</td><td class="w">10%</td><td>Licence allows wider use, supports local languages and protects children's data.</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <p class="note">Weights are a suggested starting point. Agree final weights with management before scoring.</p>
+      </div>
+    </section>
+
+    <section>
+      <div class="wrap">
+        <div class="phase-head">
+          <span class="n">2</span>
+          <h2>Step 2: Develop our own platform</h2>
+          <p>With what we learn in Step 1, Elyra builds its own education system, built on science and facts and designed around the skills each country needs.</p>
+        </div>
+        <div class="ws">
+          <article class="wcard">
+            <span class="k">Platform</span>
+            <h3>Build the Elyra education system</h3>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="s1"><span>Write requirements based on Step 1 test results and teacher feedback.</span></label></li>
+              <li><label><input type="checkbox" data-task="s2"><span>Define the Elyra curriculum framework for both tracks.</span></label></li>
+              <li><label><input type="checkbox" data-task="s3"><span>Plan content production with top educators and local experts.</span></label></li>
+              <li><label><input type="checkbox" data-task="s4"><span>Compare building, licensing and partnering for the technology.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Requirements document and build plan.</p>
+          </article>
+          <article class="wcard">
+            <span class="k">Business</span>
+            <h3>Professional education for paying students</h3>
+            <ul class="tasks">
+              <li><label><input type="checkbox" data-task="p1"><span>Map client groups and what courses each would pay for.</span></label></li>
+              <li><label><input type="checkbox" data-task="p2"><span>Draft a course catalogue and a pricing model.</span></label></li>
+              <li><label><input type="checkbox" data-task="p3"><span>Investigate certification and accreditation in the pilot country.</span></label></li>
+              <li><label><input type="checkbox" data-task="p4"><span>Plan how village classrooms work as paid learning hubs outside school hours.</span></label></li>
+            </ul>
+            <p class="deliv"><b>Deliver</b>Business case for the professional programme.</p>
+          </article>
+        </div>
+
+        <div class="biz">
+          <div class="box">
+            <span class="eyebrow" style="color:var(--teal)">Why this matters</span>
+            <h3>Every village classroom is also a learning hub we can sell.</h3>
+            <p>Through our villages, Elyra will have equipped, connected classrooms in places where high-quality education is hard to get. Opening them to paying students is a vital part of the business plan. Income from professional courses strengthens the villages and the platform.</p>
+            <ul class="clients">
+              <li>Adults seeking job skills</li><li>Young people seeking online work</li><li>Local companies</li><li>Professionals</li><li>Public sector</li><li>Organisations</li>
+            </ul>
+          </div>
+          <div>
+            <span class="eyebrow">Open questions to settle with management</span>
+            <ol class="open" style="margin-top:14px">
+              <li><strong>Pilot country and village.</strong> Where will the first classroom be?</li>
+              <li><strong>Budget per classroom.</strong> What is the limit for equipment and yearly running costs?</li>
+              <li><strong>Languages.</strong> Which languages must lessons support?</li>
+              <li><strong>Timeline.</strong> When should the Step 1 recommendation be ready?</li>
+              <li><strong>Pricing.</strong> Price range for the professional programme.</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+</div>
+
+<header class="hero home-view" id="top">
+  <div class="wrap">
+    <div>
+      <span class="eyebrow">Elyra Earth Education</span>
+      <h1>A world-class classroom in <em>every</em> village.</h1>
+      <p class="lead">Elyra Earth brings top educators into village schools through digital lessons, supported by local teachers on site. The goal is human capital: the knowledge and skills a country needs while it builds prosperity.</p>
+      <div class="cta-row">
+        <a class="btn btn-primary" href="#model">See how it works</a>
+        <a class="btn btn-ghost" href="#partner">Partner with us</a>
+      </div>
+    </div>
+
+    <figure class="screen" aria-label="Illustration of an Elyra village classroom screen">
+      <div class="screen-bar">
+        <span><span class="dot"></span>Live lesson</span>
+        <span>Village classroom · Big screen</span>
+      </div>
+      <div class="lesson">
+        <span class="mod">Economy · Module 3</span>
+        <h3>How a village market sets a fair price</h3>
+        <span class="who">Digital educator on screen · Local teacher in the room</span>
+        <div class="poll">
+          <p>Class poll: the harvest doubles. What happens to the price of maize?</p>
+          <div class="opt"><span>It goes up</span><span>tap to answer</span></div>
+          <div class="opt on"><span>It goes down</span><span>class majority</span></div>
+          <div class="opt"><span>It stays the same</span><span>tap to answer</span></div>
+        </div>
+      </div>
+      <div class="room">
+        <span class="chip">Starlink connected</span>
+        <span class="chip">Solar power</span>
+        <span class="chip">Interactive screen</span>
+        <span class="chip">Assistant teacher present</span>
+      </div>
+      <figcaption class="caption">Illustration of a lesson. Content and interface are examples.</figcaption>
+    </figure>
+  </div>
+</header>
+
+<main class="home-view">
+  <section class="premise">
+    <div class="wrap">
+      <div>
+        <span class="eyebrow">Why we build it this way</span>
+        <h2 style="margin-top:14px">Talent is everywhere. Good teaching is not.</h2>
+      </div>
+      <div class="body">
+        <p>Education quality in the regions where Elyra works is mixed, and often poor. Classrooms lack trained teachers, materials and a curriculum connected to the work a growing economy needs.</p>
+        <p>We do not try to fix this one teacher at a time. <strong>Every child in an Elyra village with a school or education programme gets the same top-quality lessons</strong>, delivered digitally by leading educators and supported in the room by local teachers.</p>
+        <p>The education is <strong>secular, built on science and facts</strong>, and practical. It is designed around one question: what do the people of this country need to know to build it, run it and lead it?</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="roi-sec" id="investment">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The investment case</span>
+        <h2>Education is one of the smartest investments the world can make.</h2>
+      </div>
+
+      <div class="cc">
+        <div>
+          <div class="big">$65<small>per $1</small></div>
+          <p class="src">Benefit for every dollar spent on improving how children learn in low- and lower-middle-income countries. Copenhagen Consensus Center, <em>Best Things First</em> (Bjørn Lomborg, 2023).</p>
+        </div>
+        <div class="txt">
+          <p>The Copenhagen Consensus Center asked leading economists to rank the world's most effective development investments. <strong>Better education came out near the top, with an estimated $65 in social and economic benefit for every dollar spent.</strong></p>
+          <p>The return comes from what children actually learn, not only how many years they sit in school. Children who learn more become more productive adults, earn more and contribute more to their communities and their country.</p>
+          <p><strong>It is also an investment in the environment and climate.</strong> Educated, more prosperous societies farm more sustainably, adopt cleaner technology and are better able to protect their land and adapt to a changing climate. That is why Elyra sees education as the foundation for a sustainable future.</p>
+        </div>
+      </div>
+
+      <div class="calc">
+        <div class="inputs" id="calc-inputs">
+          <span class="grp">Investment</span>
+          <label for="in-cost">Cost per child per year (USD)<input id="in-cost" type="number" min="0" step="50" value="800"></label>
+          <label for="in-years">Years of education and support<input id="in-years" type="number" min="1" max="30" step="1" value="20"></label>
+          <span class="grp">Outcome</span>
+          <label for="in-grad">Starting income as a professional (USD/year)<span>Engineer, doctor, business owner, public leader</span><input id="in-grad" type="number" min="0" step="500" value="15000"></label>
+          <label for="in-base">Income without the education (USD/year)<span>Informal or low-skilled work</span><input id="in-base" type="number" min="0" step="100" value="1500"></label>
+          <label for="in-growth">Real income growth per year (%)<input id="in-growth" type="number" min="0" max="10" step="0.5" value="3"></label>
+          <label for="in-work">Working years<input id="in-work" type="number" min="1" max="50" step="1" value="40"></label>
+          <span class="grp">Economics</span>
+          <label for="in-disc">Discount rate (%)<span>Copenhagen Consensus uses 5% and 8%</span><input id="in-disc" type="number" min="0" max="15" step="0.5" value="5"></label>
+          <button class="reset" id="calc-reset" type="button">Reset to Elyra base case</button>
+        </div>
+
+        <div class="out">
+          <div>
+            <span class="eyebrow">Example: one top performer in Kenya</span>
+            <h3 style="margin-top:10px">$800 a year for 20 years. 40 years as a high-level contributor.</h3>
+          </div>
+          <div class="kpis">
+            <div class="kpi"><span class="l">Total invested</span><span class="v" id="o-cost">$16,000</span></div>
+            <div class="kpi"><span class="l">Extra lifetime income</span><span class="v" id="o-ben">$1.02M</span></div>
+            <div class="kpi hl"><span class="l">Return per $1</span><span class="v" id="o-x">$64</span></div>
+            <div class="kpi"><span class="l" id="o-pvl">Return per $1, discounted at 5%</span><span class="v" id="o-pvx">$14</span></div>
+          </div>
+          <div class="chart">
+            <p>Cumulative investment and extra income, by year from start of education (USD, not discounted)</p>
+            <svg id="chart" viewBox="0 0 640 260" role="img" aria-label="Chart of cumulative investment versus cumulative extra income over the child's life"></svg>
+            <div class="legend"><span><i style="background:var(--muted)"></i>Cumulative investment</span><span><i style="background:var(--teal)"></i>Cumulative extra income</span></div>
+          </div>
+          <div class="assume">
+            <p><span class="flag">Assumption</span>The income figures are Elyra planning assumptions for a top performer, not measured outcomes. They should be checked against Kenyan earnings data (KNBS) before use with investors.</p>
+            <p><strong>How it is calculated.</strong> Extra income = professional income minus income without the education, both growing at the same real rate, over the working years after education ends. The return counts only the person's own extra income. It leaves out taxes paid, jobs created for others and wider effects on the community, so the full return to the country is likely higher.</p>
+            <p><strong>Why two numbers.</strong> The first divides total extra income by total cost. The discounted figure values money received decades from now lower than money spent today, which is how economists, including the Copenhagen Consensus, compare investments.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="stack-sec" id="model">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">The Elyra classroom</span>
+        <h2>Five layers make one classroom work.</h2>
+        <p class="lead">Teaching only happens when everything underneath it works every day. We treat power, connectivity, equipment and safety as part of the education, not as extras.</p>
+      </div>
+      <div class="stack-grid">
+        <div>
+          <div class="stack" role="list">
+            <div class="layer top" role="listitem"><span class="k">Learning</span><div><h3>Children and young people</h3><p>Academic and practical tracks, side by side.</p></div></div>
+            <div class="layer" role="listitem"><span class="k">Teaching</span><div><h3>Top educators, digitally</h3><p>Recorded and live lessons from leading teachers and experts.</p></div></div>
+            <div class="layer" role="listitem"><span class="k">In the room</span><div><h3>Local teachers as assistants</h3><p>Guide, explain, translate and follow up each child.</p></div></div>
+            <div class="layer" role="listitem"><span class="k">Equipment</span><div><h3>Big screen with interaction</h3><p>Class-wide viewing, polls, questions and shared exercises.</p></div></div>
+            <div class="layer" role="listitem"><span class="k">Foundation</span><div><h3>Power, Starlink and safety</h3><p>Reliable electricity, high-speed internet and a safe building.</p></div></div>
+          </div>
+          <p class="stack-note">Read from the bottom up. Each layer depends on the one below it.</p>
+        </div>
+        <div class="roles">
+          <div class="role">
+            <h3>Digital education from top educators</h3>
+            <p>The best teachers reach every Elyra classroom at once. A child in a rural village gets the same lesson as a child in a capital city, at the same quality.</p>
+          </div>
+          <div class="role">
+            <h3>Local teachers as assistants and helpers</h3>
+            <p>Local teachers know the children, the language and the community. They lead the room, support the lesson and make sure no one is left behind. The role also builds teaching skills locally.</p>
+          </div>
+          <div class="role">
+            <h3>Starlink, power and equipment</h3>
+            <p>High-speed internet through Starlink, stable power and a large interactive screen are standard in every classroom. Without them, digital education does not happen.</p>
+          </div>
+          <div class="role">
+            <h3>Safety comes first</h3>
+            <p>Safe buildings, protected equipment and Elyra's safeguarding rules apply in every classroom, including guardian consent and strict media rules for any content showing children.</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="tracks">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Two tracks, equal standing</span>
+        <h2>The workshop is as important as the library.</h2>
+        <p class="lead">A country building prosperity needs scientists and economists. It also needs mechanics, electricians, welders, food producers, cooks and designers. Every child should find a path that fits them.</p>
+      </div>
+      <div class="tracks">
+        <article class="track">
+          <span class="tag">Academic track</span>
+          <h3>Knowledge to understand and shape society</h3>
+          <p>Reading, writing, mathematics and science as the base, built out with the subjects a growing country depends on.</p>
+          <ul class="pills">
+            <li>Mathematics</li><li>Science</li><li>Language and writing</li><li>Economics</li><li>Civics and governance</li><li>Digital skills</li>
+          </ul>
+        </article>
+        <article class="track">
+          <span class="tag">Practical track</span>
+          <h3>Skills that build, repair and produce</h3>
+          <p>For the child who wants to spend the day in the garage figuring out how things work. Hands-on training in vital work skills.</p>
+          <ul class="pills">
+            <li>Mechanics</li><li>Electrics</li><li>Welding</li><li>Food production</li><li>Cooking</li><li>Fashion design</li>
+          </ul>
+        </article>
+      </div>
+      <p class="equal">As many opportunities in practical work as in academic study.</p>
+    </div>
+  </section>
+
+  <section class="cur-sec" id="curriculum">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Core curriculum</span>
+        <h2>The knowledge it takes to build and lead a country.</h2>
+        <p class="lead">Every Elyra student, whichever track they choose, learns the subjects that build local human capital.</p>
+      </div>
+      <div class="cur">
+        <div class="subj"><span class="k">Land</span><h3>Local farming</h3><p>Productive, sustainable agriculture suited to local soil, climate and markets.</p></div>
+        <div class="subj"><span class="k">Money</span><h3>How the economy works</h3><p>Prices, trade, saving, taxes and public budgets. How wealth is created in a country.</p></div>
+        <div class="subj"><span class="k">Enterprise</span><h3>Entrepreneurship</h3><p>Spotting a need, starting a business, keeping accounts and hiring others.</p></div>
+        <div class="subj"><span class="k">Voice</span><h3>Public debate and speaking</h3><p>Forming an argument, listening to others and speaking with confidence in public.</p></div>
+        <div class="subj"><span class="k">People</span><h3>Deep human skills</h3><p>Communication, cooperation, resilience, ethics and understanding oneself and others.</p></div>
+        <div class="subj"><span class="k">Nation</span><h3>Leadership and governance</h3><p>How institutions work, how a country is built and what it takes to lead one well.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section>
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Principles</span>
+        <h2>What every lesson is built on.</h2>
+      </div>
+      <div class="principles">
+        <div class="pr"><h3>Secular</h3><p>Education is free from religious instruction and open to every child.</p></div>
+        <div class="pr"><h3>Science and facts</h3><p>Content is evidence-based and kept up to date with current knowledge.</p></div>
+        <div class="pr"><h3>Practical</h3><p>Learning connects to real work, real decisions and the local economy.</p></div>
+        <div class="pr"><h3>Built for the country</h3><p>Skills are chosen for what the country needs as it builds prosperity.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section class="infra" id="infrastructure">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Infrastructure department</span>
+        <h2>Schools need buildings. We fund them.</h2>
+        <p class="lead">The education programme includes its own infrastructure department. Its job is to secure funding for school buildings and learning spaces across Elyra projects, so education can start where the need is.</p>
+      </div>
+      <div class="infra-grid">
+        <div class="ib"><h3>Buildings and classrooms</h3><p>Funding and building schools and learning spaces in Elyra villages, with local builders where possible.</p></div>
+        <div class="ib"><h3>Power and connectivity</h3><p>Solar power, battery storage and Starlink installed and maintained as standard.</p></div>
+        <div class="ib"><h3>Workshops and equipment</h3><p>Interactive screens, devices and fitted workshops for the practical track.</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="roadmap">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Roadmap</span>
+        <h2>Start fast with a partner. Then build our own.</h2>
+        <p class="lead">We will not wait years to develop a curriculum before children can learn. We start with a proven solution and grow our own system alongside it.</p>
+      </div>
+      <div class="road">
+        <article class="step">
+          <span class="n">1</span>
+          <span class="when">Phase one</span>
+          <h3>Partner for an out-of-the-box digital platform</h3>
+          <p>We find an education partner with a complete, ready-to-use digital solution that can run in Elyra classrooms from day one.</p>
+          <ul>
+            <li>Proven content in core subjects</li>
+            <li>Works on a big interactive screen, with offline backup</li>
+            <li>Supports local teachers as classroom assistants</li>
+          </ul>
+        </article>
+        <article class="step">
+          <span class="n">2</span>
+          <span class="when">Phase two</span>
+          <h3>Build the Elyra education system</h3>
+          <p>We develop our own curriculum, built on science and facts and designed around the skills each country needs.</p>
+          <ul>
+            <li>Elyra's core curriculum and practical track</li>
+            <li>Content made with top educators and local experts</li>
+            <li>Adapted to each country's language and economy</li>
+          </ul>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="partner" id="partner">
+    <div class="wrap">
+      <div class="sec-head">
+        <span class="eyebrow">Work with us</span>
+        <h2>Help us build the classroom.</h2>
+        <p class="lead">We are looking for partners who share the goal of top-quality education in every village.</p>
+      </div>
+      <div class="aud">
+        <div class="a"><h3>Education providers</h3><p>Do you run a digital education platform? We are looking for our phase-one partner.</p></div>
+        <div class="a"><h3>Infrastructure partners</h3><p>Power, connectivity, construction and equipment partners for village schools.</p></div>
+        <div class="a"><h3>Sponsors and companies</h3><p>Fund classrooms and workshops, and see verified progress in each village.</p></div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span><b>Elyra Earth</b> · Education</span>
+    <span>Secular. Science-based. Built for the countries we work in.</span>
+  </div>
+</footer>
+
+<script>
+(function(){
+  const ids=["cost","years","grad","base","growth","work","disc"];
+  const defaults={cost:800,years:20,grad:15000,base:1500,growth:3,work:40,disc:5};
+  const $=id=>document.getElementById(id);
+  const num=(id)=>{const v=parseFloat($("in-"+id).value);return isFinite(v)&&v>=0?v:0};
+  const usd=v=>{const a=Math.abs(v);if(a>=1e6)return "$"+(v/1e6).toFixed(2)+"M";if(a>=1e4)return "$"+Math.round(v/1e3)+"K";return "$"+Math.round(v).toLocaleString("en-US")};
+  const NS="http://www.w3.org/2000/svg";
+  function el(tag,attrs,text){const e=document.createElementNS(NS,tag);for(const k in attrs)e.setAttribute(k,attrs[k]);if(text!=null)e.textContent=text;return e}
+
+  function run(){
+    const c=num("cost"),y=Math.max(1,Math.round(num("years"))),grad=num("grad"),base=num("base"),g=num("growth")/100,w=Math.max(1,Math.round(num("work"))),d=num("disc")/100;
+    let cost=0,pvc=0,ben=0,pvb=0;const cumC=[0],cumB=[0];
+    for(let t=0;t<y+w;t++){
+      if(t<y){cost+=c;pvc+=c/Math.pow(1+d,t)}
+      else{const k=t-y;const u=(grad-base)*Math.pow(1+g,k);ben+=u;pvb+=u/Math.pow(1+d,t)}
+      cumC.push(cost);cumB.push(ben);
+    }
+    $("o-cost").textContent=usd(cost);
+    $("o-ben").textContent=usd(ben);
+    $("o-x").textContent=cost>0?"$"+Math.round(ben/cost):"–";
+    $("o-pvx").textContent=pvc>0?"$"+(pvb/pvc).toFixed(1).replace(/\.0$/,""):"–";
+    $("o-pvl").textContent="Return per $1, discounted at "+num("disc")+"%";
+    draw(cumC,cumB,y);
+  }
+
+  function nice(max){if(max<=0)return 1;const p=Math.pow(10,Math.floor(Math.log10(max)));const m=max/p;return (m<=1?1:m<=2?2:m<=5?5:10)*p}
+
+  function draw(cc,cb,y){
+    const svg=$("chart");while(svg.firstChild)svg.removeChild(svg.firstChild);
+    const W=640,H=260,L=64,R=16,T=12,B=34;const n=cc.length-1;
+    const top=nice(Math.max(cb[n],cc[n])*1.02);
+    const x=i=>L+(W-L-R)*i/n, yy=v=>T+(H-T-B)*(1-v/top);
+    const css=getComputedStyle(document.documentElement);
+    const muted=css.getPropertyValue("--muted").trim(),line=css.getPropertyValue("--line").trim(),teal=css.getPropertyValue("--teal").trim(),ink=css.getPropertyValue("--ink").trim(),tint=css.getPropertyValue("--tint").trim();
+    for(let i=0;i<=4;i++){const v=top*i/4;svg.appendChild(el("line",{x1:L,x2:W-R,y1:yy(v),y2:yy(v),stroke:line,"stroke-width":1}));svg.appendChild(el("text",{x:L-8,y:yy(v)+4,"text-anchor":"end","font-size":11,fill:muted,"font-family":"Inter, system-ui, sans-serif"},usd(v)))}
+    const step=n>40?10:5;for(let i=0;i<=n;i+=step){svg.appendChild(el("text",{x:x(i),y:H-12,"text-anchor":"middle","font-size":11,fill:muted,"font-family":"Inter, system-ui, sans-serif"},"Yr "+i))}
+    svg.appendChild(el("rect",{x:L,y:T,width:x(y)-L,height:H-T-B,fill:tint,opacity:.6}));
+    svg.appendChild(el("text",{x:(L+x(y))/2,y:T+16,"text-anchor":"middle","font-size":11,fill:ink,"font-family":"Inter, system-ui, sans-serif"},"Education"));
+    svg.appendChild(el("text",{x:(x(y)+W-R)/2,y:T+16,"text-anchor":"middle","font-size":11,fill:ink,"font-family":"Inter, system-ui, sans-serif"},"Working life"));
+    const path=a=>a.map((v,i)=>(i?"L":"M")+x(i).toFixed(1)+" "+yy(v).toFixed(1)).join(" ");
+    svg.appendChild(el("path",{d:path(cc),fill:"none",stroke:muted,"stroke-width":2,"stroke-dasharray":"5 4"}));
+    svg.appendChild(el("path",{d:path(cb),fill:"none",stroke:teal,"stroke-width":2.5}));
+    svg.appendChild(el("circle",{cx:x(n),cy:yy(cb[n]),r:4,fill:teal}));
+  }
+
+  ids.forEach(id=>$("in-"+id).addEventListener("input",run));
+  $("calc-reset").addEventListener("click",()=>{ids.forEach(id=>$("in-"+id).value=defaults[id]);run()});
+  run();
+  try{matchMedia("(prefers-color-scheme: dark)").addEventListener("change",run)}catch(e){}
+  new MutationObserver(run).observe(document.documentElement,{attributes:true,attributeFilter:["data-theme"]});
+})();
+
+/* Views: #school-dev-tasks shows the tasks page; every other hash shows the home page */
+(function(){
+  const tasksView=document.getElementById("view-tasks");
+  const homeEls=document.querySelectorAll(".home-view");
+  const btn=document.getElementById("nav-tasks");
+  function route(){
+    const h=location.hash.replace("#","");
+    const onTasks=h==="school-dev-tasks";
+    tasksView.hidden=!onTasks;
+    homeEls.forEach(e=>e.hidden=onTasks);
+    if(onTasks){btn.setAttribute("aria-current","page");window.scrollTo(0,0)}
+    else{btn.removeAttribute("aria-current");const t=h&&document.getElementById(h);if(t)t.scrollIntoView();else if(!h)window.scrollTo(0,0)}
+  }
+  window.addEventListener("hashchange",route);
+  route();
+
+  /* Task ticks: saved per viewer in this browser */
+  const KEY="elyra-school-tasks";
+  let state={};
+  try{state=JSON.parse(localStorage.getItem(KEY)||"{}")||{}}catch(e){state={}}
+  const boxes=tasksView.querySelectorAll("input[data-task]");
+  function update(){
+    const done=[...boxes].filter(b=>b.checked).length;
+    document.getElementById("t-count").textContent=done+" of "+boxes.length+" tasks done";
+    document.getElementById("t-bar").style.width=(boxes.length?done/boxes.length*100:0)+"%";
+  }
+  boxes.forEach(b=>{
+    b.id="task-"+b.dataset.task;
+    b.checked=!!state[b.dataset.task];
+    b.addEventListener("change",()=>{state[b.dataset.task]=b.checked;try{localStorage.setItem(KEY,JSON.stringify(state))}catch(e){}update()});
+  });
+  update();
+})();
+</script>
+
+</body></html>
